@@ -1,6 +1,7 @@
 <?php
 
-namespace App;
+// Todo - 01 : 1.1 MERAPIKAN STRUKTUR FOLDER AUTH 
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -36,4 +37,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    // TODO 3 : 1.1 MENGATUR RELASI ANTAR TABEL 
+    public function forms(){
+        return $this->hasMany('App\Models\Form');
+    }
+
+    public function responses()
+    {
+        return $this->hasMany('App\Models\FormResponse');
+    }
+
+    public function notifs()
+    {
+        return $this->hasMany('App\Models\Notif');
+    }
+
+
 }

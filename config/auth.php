@@ -65,10 +65,12 @@ return [
     |
     */
 
+// Todo - 01 : 1.3 MERAPIKAN STRUKTUR FOLDER AUTH 
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

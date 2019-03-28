@@ -4,96 +4,91 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <title>Form</title>
     </head>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="{{asset('css/costume.css')}}">
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+
+
+
+            <ul class="nav justify-content-end">
+                @if (Auth::user())
+                    <li class="nav-item">
+                      <a class="nav-link " href="{{'/home'}}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/create">Buat Pertanyaan</a>
+                    </li>
+                    
+                @else
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('register')}}">Register</a>
+                    </li>
+                @endif
+                </ul>
+
+        <form class="form-inline" method="get" action="/">
+                <div class="form-group mx-sm-3">
+                <label class="sr-only">Cari</label>
+                <input type="text" class="form-control" name="cari"  placeholder="Cari">
+            </div>
+                <button type="submit" class="btn btn-primary">Cari</button>
+            </form>
+            <div class="container">
+            <div id="jarak"></div>
+
+            @if (session('msg'))
+                <div class="alert alert-success" role="alert">
+                    {{session('msg')}}
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            @if (session('msg-hapus'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('msg-hapus')}}
                 </div>
+            @endif
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
+            <h1 class="text-center">Pertanyaan Yang ada</h1>
+            
+                <div class="row">
+                    @foreach ($forms as $form)
+                    {{-- {{dd(Auth::user())}} --}}
+                    <div class="col-md-12 jarak-card" >
+                        <div class="card">
+                        
+                        <div class="card-body">
+                            <h4 class="card-title">{{$form->title}}</h4>
+                            {{-- <p class="card-text">{{$form->subject}}</p> --}}
+                            <span> Dibuat Oleh : {{$form->user->name}} </span><br>
+                            <a href="/{{$form->slug}}" class="btn btn-primary">Baca</a>
+
+                            @if (Auth::user())
+                            @if ($form->user->id == Auth::user()->id)    
+                                <a href="/{{$form->slug}}/edit" class="btn btn-warning">Edit</a>
+                                <br>
+                                <form method="POST" action="/{{$form->id}}">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            @endif
+                            @endif
+                            {{-- <a href="/hapus/id" class="btn btn-danger">Hapus</a> --}}
+                        </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
+
         </div>
     </body>
 </html>
