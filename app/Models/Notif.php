@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Notif extends Model
 {
     // TODO 4 : MEBERIKAN IZIN
-    
+    protected $fillable = [
+        'subject','seen','form_id', 'user_id','hel'
+   ];
+
 
    // TODO 4 :1 RELASI
 

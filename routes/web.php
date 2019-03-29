@@ -24,8 +24,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/', 'FormController@store');
 
     // TODO 2 : 2.12 URL MENAMILKAN DAN MENYIMPAN PERUBAHAN
+    // menamilkan form editnya
+    Route::get('/{slug}/edit', 'FormController@edit');
+    //  menyimpan perubahan 
+    Route::put('/{id}', 'FormController@update');
    
     // TODO 2 : 2.9 URL HAPUS
+    Route::delete('/{id}', 'FormController@destroy');
     
     // TODO 3 : 1.2 URL TANGGAPAN (KOMENTAR )
    
@@ -37,4 +42,4 @@ Route::group(['middleware' => 'auth'], function(){
 Route::get('/home', 'HomeController@index')->name('home');
 
 // TODO 2 : 2.7 MENAMPILKAN DATA YANG DI KELIK / DI PILIH
-
+Route::get('/{slug}', 'FormController@singgle');

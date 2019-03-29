@@ -1,4 +1,3 @@
-{{-- {{dd(Auth::user()->notifs()->count())}} --}}
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -54,7 +53,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link " href="/notif/notif">Pemberitahuan ({{Auth::user()->notifs->where('seen', 0)->count()  }} ) </a>
+                                <a class="nav-link " href="/notif/notif">Pemberitahuan (0) </a>
                             </li>
 
                             <li class="nav-item">

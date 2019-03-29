@@ -40,6 +40,7 @@
             </div>
                 <button type="submit" class="btn btn-primary">Cari</button>
             </form>
+            
             <div class="container">
             <div id="jarak"></div>
 
