@@ -53,7 +53,9 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link " href="/notif/notif">Pemberitahuan (0) </a>
+                                <a class="nav-link " href="/notif">Pemberitahuan 
+                                    ({{Auth::user()->notifs->where('seen', 0)->count()}})
+                                 </a>
                             </li>
 
                             <li class="nav-item">

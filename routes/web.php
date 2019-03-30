@@ -33,11 +33,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/{id}', 'FormController@destroy');
     
     // TODO 3 : 1.2 URL TANGGAPAN (KOMENTAR )
+    Route::post('/tanggapi/{id}', 'FormResponseController@store');
    
 });
 
 // TODO 4 : 1.2 URL MEMBUAT NOTIFIKASI (PEMBERITAHUAN)
-
+    Route::get('/notif', 'HomeController@notif');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

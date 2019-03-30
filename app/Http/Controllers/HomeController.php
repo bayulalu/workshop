@@ -35,7 +35,11 @@ class HomeController extends Controller
 
     public function notif()
     {
-        /// // TODO 4 : 1.3 Mengupdate notifikasi setalah di kelik
-       
+         // TODO 4 : 1.3 Mengupdate notifikasi setalah di kelik
+       $user = Auth::user();
+       $notifs = Notif::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+       $notif_model = new Notif;
+
+       return view('notif', compact('user', 'notifs', 'notif_model'));
     }
 }

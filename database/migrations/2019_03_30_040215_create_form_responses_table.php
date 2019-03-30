@@ -16,12 +16,19 @@ class CreateFormResponsesTable extends Migration
         Schema::create('form_responses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('subject');
-            $table->unsignedBigInteger('form_id')->unsigned();
-            $table->unsignedBigInteger('user_id')->unsigned();
+            
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('form_id');
             $table->timestamps();
 
-            $table->foreign('form_id')->references('id')->on('forms');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')
+      ->references('id')->on('users')
+      ->onDelete('cascade');
+
+
+      $table->foreign('form_id')
+      ->references('id')->on('forms')
+      ->onDelete('cascade');
         });
     }
 
