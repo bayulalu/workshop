@@ -4,7 +4,8 @@
 3. COPY SEMUA ISI .env.example ke file .env yang di buat tadi 
 4. buka terminal jalankan perintah php artisan key:generate
 5. atur file(database) yang ada dalam .env sesuai yang sudah di ajarkan tadi
-6. SILAKAN DI PELAJARIII
+6. jalakan peritah php artisan migrate
+7. SILAKAN DI PELAJARIII
 
 jika ada yang belum di pahami dan malu bertanya di group silakan chat saya 
 =======
