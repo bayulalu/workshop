@@ -9,3 +9,4 @@
 
 jika ada yang belum di pahami dan malu bertanya di group silakan chat saya 
 =======
+situs tutorial video : https://drive.google.com/drive/folders/1o9vG2_ZRTXkfRtu3GDzG6PAS4k5vlDJt
